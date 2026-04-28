@@ -1,0 +1,45 @@
+Friset is Create A react app
+	install a react-router-dom(to Create A Route)
+	install axios api(to connect to backend(laravel))
+	install bootstrap to design a your page
+	
+
+second create a laravel app
+	php aritsan install:api
+	create a controller,
+	create a Model
+	add this line to connect with frontend ( Route::resource('users',controllerName::class) )
+	to insert a data
+	{
+		User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
+        ]);
+        return response()->json('success Inserted');
+	}
+	
+	to select data
+	{
+		 return response()->json(User::latest()->get());
+	}
+	to update data
+	{
+		select using id
+		return response()->json(User::whereId($id)->first());
+		
+		$user = User::whereId($id)->first();
+        $user->update([
+            'name'=>$request->name,
+            'email'=>$request->email
+        ]);
+        return response()->json('succeefully Updated');
+	}
+	
+	to delete data
+	{
+		User::whereId($id)->first()->delete();
+        return response()->json('success');
+	}
+	
+	
